@@ -1,1 +1,22 @@
-<%= render 'form', recipe: @recipe %>
+<h1>Create a Recipe</h1>
+
+<%= form_for @recipe do |f|%>
+<p><%= f.label :title, value: "Recipe name:" %></p>
+<p><%= f.text_field :title %></p>
+
+<% counter = 1%>
+<p><%= f.fields_for :ingredients do |ff| %>
+    <fieldset>
+        <legend>Ingredient #<%= counter%></legend><p>
+            <p><%= ff.label :name, value: "Ingredient name:" %>
+            <p><%= ff.text_field :name %>
+
+            <p><%= ff.label :quantity, value: "Ingredient quantity:" %>
+            <p><%= ff.text_field :quantity %>
+        <% counter += 1%>
+    </fieldset></p>
+<%end%>
+
+<%= f.submit %>
+<%end%>
+
